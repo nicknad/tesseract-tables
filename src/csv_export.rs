@@ -2,10 +2,10 @@
 //!
 //! Converts raw OCR text lines into a structured CSV file.
 
-use std::fs::File;
-use std::path::Path;
 use anyhow::Result;
 use csv::Writer;
+use std::fs::File;
+use std::path::Path;
 
 /// Writes OCR-extracted lines to a CSV file with fixed column layout.
 pub fn write_csv_from_ocr_texts<P: AsRef<Path>>(
@@ -22,13 +22,9 @@ pub fn write_csv_from_ocr_texts<P: AsRef<Path>>(
 
         let cells = line
             .split_whitespace()
-            .take(columns);
-
-        let trimmed: Vec<&str> = cells.into_iter()
-            .take_while(|&s| !s.is_empty() && s != "\"\"")
-            .collect();
-
-        writer.write_record(trimmed)?;
+            .take(columns)
+            .filter(|cell| *cell != "\"\"");
+        writer.write_record(cells)?;
     }
 
     writer.flush()?;

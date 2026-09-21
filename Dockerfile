@@ -16,9 +16,6 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-# Accept build-time features (like dhat-heap)
-ARG FEATURES=""
-
 # Copy configuration
 COPY Cargo.toml Cargo.lock ./
 
@@ -26,23 +23,14 @@ COPY Cargo.toml Cargo.lock ./
 # We need a dummy benchmark file because Cargo.toml defines it
 RUN mkdir src && echo "fn main() {}" > src/main.rs && \
     mkdir benches && echo "fn main() {}" > benches/image_processing.rs && \
-    if [ -n "$FEATURES" ]; then \
-        cargo build --release --features "$FEATURES"; \
-    else \
-        cargo build --release; \
-    fi
+    cargo build --release
 
 # Copy real source and rebuild the actual application
 COPY . .
-RUN cargo clean -p table-ocr && if [ -n "$FEATURES" ]; then \
-        cargo build --release --features "$FEATURES"; \
-    else \
-        cargo build --release; \
-    fi
+RUN cargo clean -p table-ocr && cargo build --release
 
 # Ensure output directories exist
-RUN mkdir -p /app/files /app/output /app/perf_data
+RUN mkdir -p /app/files /app/output
 
-ENV RUST_LOG=info
 ENV TESSDATA_PREFIX=/usr/share/tesseract-ocr/5/tessdata
 ENTRYPOINT ["/app/target/release/table-ocr"]

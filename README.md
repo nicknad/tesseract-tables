@@ -44,7 +44,6 @@ docker compose up --build
 | `--columns` | `5` | Number of CSV columns per row |
 | `--x-start`, `--x-end` | — | X-coordinate window to OCR, in pixels of the scaled image |
 | `--target-dpi` | `300` | Scales image width to `3000px * (dpi/300)` |
-| `--deskew` | `true` | Enable deskewing |
 | `--skip-denoise` | `false` | Skip median/morphological denoising for clean images |
 
 Inputs are mounted read-only; only the resulting CSV is written to the host.

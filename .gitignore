@@ -3,15 +3,9 @@
 **/*.rs.bk
 *.pdb
 
-# OCR inputs, outputs and runtime artifacts (never commit data)
+# OCR inputs and outputs (never commit data)
 /files/
 /output/
-/log/
-/perf_data/
-
-# Profiling and trace output
-trace-*.json
-dhat-heap.json
 /*.csv
 
 # Editor and OS files

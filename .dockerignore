@@ -2,13 +2,9 @@
 target/
 benches/
 
-# Local data: never bake OCR inputs, outputs or traces into the image
+# Local data: never bake OCR inputs or outputs into the image
 files/
 output/
-log/
-perf_data/
-trace-*.json
-dhat-heap.json
 *.csv
 
 # Repo tooling and docs

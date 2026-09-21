@@ -2,7 +2,10 @@ use clap::Parser;
 use std::path::PathBuf;
 
 #[derive(Parser, Debug)]
-#[command(name = "table-ocr", about = "Batch-enhance table images and extract data via OCR")]
+#[command(
+    name = "table-ocr",
+    about = "Batch-enhance table images and extract data via OCR"
+)]
 pub struct Args {
     /// Input folder path containing images
     #[arg(short, long)]
@@ -35,10 +38,6 @@ pub struct Args {
     /// Use this to ensure consistent x-coordinates across images.
     #[arg(long, default_value = "300")]
     pub target_dpi: u32,
-
-    /// Enable deskewing
-    #[arg(long, default_value = "true")]
-    pub deskew: bool,
 
     /// Skip heavy noise removal filters for clean digital images/screenshots
     #[arg(long, default_value_t = false)]

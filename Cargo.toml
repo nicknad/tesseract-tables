@@ -4,29 +4,15 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-log = "0.4.33"
-env_logger = "0.11.11"
+anyhow = "1.0.104"
+clap = { version = "4.6.4", features = ["derive"] }
+csv = "1.4.0"
 image = "0.25.9"
 imageproc = "0.27.0"
 leptess = "0.14.0"
-csv = "1.4.0"
-anyhow = "1.0.104"
-clap = {version = "4.6.4", features = ["derive"] }
-thiserror = "2.0.19"
-chrono = "0.4.45"
 rayon = "1.11.0"
-num_cpus = "1.16"
-tracing = "0.1"
-tracing-subscriber = "0.3"
-tracing-chrome = "0.7"
-dhat = { version = "0.3", optional = true }
-
-[features]
-dhat-heap = ["dhat"]
 
 [dev-dependencies]
-mockall = "0.15.0"
-tempfile = "3.26.0"
 criterion = { version = "0.8.2", features = ["html_reports"] }
 
 [[bench]]
