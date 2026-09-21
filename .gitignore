@@ -1,0 +1,23 @@
+# Rust build artifacts
+/target/
+**/*.rs.bk
+*.pdb
+
+# OCR inputs, outputs and runtime artifacts (never commit data)
+/files/
+/output/
+/log/
+/perf_data/
+
+# Profiling and trace output
+trace-*.json
+dhat-heap.json
+/*.csv
+
+# Editor and OS files
+.antigravitycli/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini

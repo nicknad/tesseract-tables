@@ -1,0 +1,28 @@
+services:
+  table-ocr:
+    build:
+      context: . # Build from the current directory
+      dockerfile: Dockerfile # Explicitly name it (optional if it's literally named Dockerfile)
+
+    # container_name: table-ocr-run  # optional — uncomment if you want a fixed name
+
+    restart: "no" # Equivalent to --rm: container is removed after exit
+
+    volumes:
+      - ./files/number8-2/:/data/images:ro # :ro = read-only mount (safer for inputs)
+      - ./output:/data/output # writable for results
+
+    command: >
+      --input-dir /data/images
+      --output /data/output/out.csv
+      --lang eng+mon
+      --columns 1
+      --x-start 1270
+      --x-end 2050
+
+    environment:
+      - RUST_LOG=info
+    # Optional but recommended additions:
+    # working_dir: /app               # if your app expects to run from a specific dir
+    # user: "1000:1000"               # run as your host user to avoid root-owned files in ./output
+    # tty: true                       # nicer output if the tool prints progress/logs
