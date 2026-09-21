@@ -23,6 +23,6 @@ pub fn scale_to_dpi(img: DynamicImage, target_dpi: u32) -> DynamicImage {
     img.resize(
         target_width,
         (img.height() as f32 * scale) as u32,
-        FilterType::Lanczos3,
+        FilterType::Triangle,
     )
 }
