@@ -32,9 +32,11 @@ pub struct Args {
     pub x_end: Option<u32>,
 
     /// Target DPI for image scaling (default: 300)
+    ///
     /// Images are scaled to a width of: 3000px * (dpi/300)
     /// - 300 DPI -> 3000px width (good for most scans)
     /// - 600 DPI -> 6000px width (high-res scans)
+    ///
     /// Use this to ensure consistent x-coordinates across images.
     #[arg(long, default_value = "300")]
     pub target_dpi: u32,

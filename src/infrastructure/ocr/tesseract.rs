@@ -7,16 +7,12 @@ use std::io::Cursor;
 use crate::domain::entities::{ColumnRegion, OcrResult};
 
 thread_local! {
-    static TESS_ENGINE: RefCell<Option<(String, LepTess)>> = RefCell::new(None);
+    static TESS_ENGINE: RefCell<Option<(String, LepTess)>> = const { RefCell::new(None) };
 }
 
 pub struct LeptessOcrEngine;
 
 impl LeptessOcrEngine {
-    pub fn new() -> Self {
-        Self
-    }
-
     pub fn recognize(
         &self,
         image: &DynamicImage,

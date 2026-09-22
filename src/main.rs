@@ -36,14 +36,14 @@ fn main() -> Result<()> {
         skip_denoise: args.skip_denoise,
     };
 
-    let batch_processor = RayonBatchProcessor::new(ImagePipeline::new(), LeptessOcrEngine::new());
+    let batch_processor = RayonBatchProcessor::new(ImagePipeline, LeptessOcrEngine);
     let results = batch_processor.process_batch(&image_paths, &config)?;
 
     let all_text_lines: Vec<String> = results.into_iter().flat_map(|r| r.text_lines).collect();
 
     eprintln!("Total lines collected: {}", all_text_lines.len());
     write_csv_from_ocr_texts(&args.output, &all_text_lines, args.columns)?;
-    eprintln!("CSV file written to {:?}", &args.output);
+    eprintln!("CSV file written to {:?}", args.output);
 
     Ok(())
 }

@@ -15,7 +15,7 @@ fn test_image() -> DynamicImage {
 }
 
 fn benchmark_pipeline(c: &mut Criterion) {
-    let pipeline = ImagePipeline::new();
+    let pipeline = ImagePipeline;
     let img = test_image();
 
     for (name, skip_denoise) in [("pipeline_full", false), ("pipeline_skip_denoise", true)] {

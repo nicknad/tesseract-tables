@@ -8,10 +8,6 @@ use crate::infrastructure::image_processing::scaler::scale_to_dpi;
 pub struct ImagePipeline;
 
 impl ImagePipeline {
-    pub fn new() -> Self {
-        Self
-    }
-
     pub fn process(&self, image: DynamicImage, config: &ProcessingConfig) -> DynamicImage {
         let img = scale_to_dpi(image, config.target_dpi);
         let img = binarize_otsu(img);
